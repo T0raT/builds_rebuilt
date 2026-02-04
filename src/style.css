@@ -18,34 +18,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0;
-  margin-bottom: 20px;
-}
-li {
-  padding: 10px 15px;
-  background-color: rgb(187, 39, 26);
-}
-
+/* Basic Page Setup */
 body {
   display: flex;
   width: 100dvw;
   height: 100dvh;
-  place-items: center;
   padding: 10px;
   overscroll-behavior-y: none;
+  justify-content: center;
 }
 
 #app-container {
   width: 1002px;
-  min-wdith: 320px;
+  min-wdith: 320px; /* Actual min-width is 425px, due to AnsiShadow logo size */
   height: 100%;
   transform-style: preserve-3d;
-  margin: auto;
 
   /* 4 Corner border code  */
   border: 1px solid white;
@@ -59,7 +46,7 @@ body {
 #app {
   margin: auto;
   height: 100%;
-  padding: 0 20px 20px 20px;
+  padding: 5px 20px 20px 20px;
   display: flex;
   flex-direction: column;
 }
@@ -76,9 +63,66 @@ body {
 #app,
 #app-container,
 .inner {
+  will-change: transform;
   transition: transform 100ms;
 }
 
 #logo-container {
   display: flex;
+}
+
+/* Hero section */
+section {
+  margin-bottom: 30px;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 100px 0px;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url("/dithering-effect.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.hero-section span {
+  color: red;
+}
+h1 {
+  margin-bottom: 10px;
+}
+.hero-section p {
+  padding: 0 100px;
+  margin-bottom: 10px;
+}
+.hero-section .loc {
+  background-color: rgba(255, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+.hero-section button {
+  border: 3px solid white;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  color: black;
+  background-color: white;
+  transition: all 100ms;
+}
+.hero-section button:hover {
+  border: 3px solid red;
+  color: red;
+  transform: translateX(-3px) translateY(-3px);
+  transition: all 170ms;
+}
+.hero-section button:active {
+  border: 3px solid red;
+  transform: translateX(2px) translateY(2px);
+  transition: all 100ms;
+}
+
+/* Builds Activities Section */
+h2 {
+  margin-left: 10px;
 }
