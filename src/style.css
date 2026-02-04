@@ -124,5 +124,8 @@ h1 {
 
 /* Builds Activities Section */
 h2 {
-  margin-left: 10px;
+  margin-left: 20px;
+}
+.builds-activities p {
+  padding: 20px;
 }

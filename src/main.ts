@@ -36,6 +36,9 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </section>
   <section class="builds-activities">
     <h2>WHAT CAN YOU DO AT BUILDS?</h2>
+    <p>Come join our community, hang out, and be in good company! We'll welcome you with open arms regardless of what you know and who you are! Our hackerspace is open at all hours of the day, but we have formal meetings on Wednesday at 7:00 PM during the fall and spring semesters. We are dedicated to providing every member with the tools and resources they need to pursue their passions.</p>
+    <div class="card-containers"></div>
+    <div class="activity-card"></div>
   </section>
 </main>
 `;
