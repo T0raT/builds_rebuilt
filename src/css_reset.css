@@ -3,6 +3,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  overscroll-behavior: none;
 }
 
 /* 2. Remove default margin */
