@@ -3,7 +3,7 @@ import fl from "figlet";
 import AnsiShadow from "figlet/fonts/ANSI Shadow";
 
 /**
- * TODO: Recreate the front page
+ * TODO: Events page recreation
  * TODO: SPA functionality (probably hell)
  * TODO: Nav element + Animations
  * TODO: Logo animation?
@@ -140,9 +140,9 @@ const transformDiv = (e: MouseEvent) => {
 
 // To reset transformations when user cursors leave main content
 const resetDiv = () => {
-  appDiv.style.transform = "rotateX(0deg) rotateY(0deg)";
+  //  appDiv.style.transform = "rotateX(0deg) rotateY(0deg)";
   innerDiv.style.transform = `translateY(0px) translateX(0px)`;
-  appContainerDiv.style.transform = `translateY(0px) translateX(0px)`;
+  //  appContainerDiv.style.transform = `translateY(0px) translateX(0px)`;
 };
 
 appContainerDiv.addEventListener("mousemove", transformDiv);
