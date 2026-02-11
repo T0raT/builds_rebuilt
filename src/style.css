@@ -30,7 +30,7 @@ body {
 
 #app-container {
   width: 1002px;
-  min-wdith: 320px; /* Actual min-width is 425px, due to AnsiShadow logo size */
+  min-width: 320px; /* Actual min-width is 425px, due to AnsiShadow logo size */
   height: 100%;
   transform-style: preserve-3d;
 
