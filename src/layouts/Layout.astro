@@ -9,33 +9,71 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
-  <div class="svg-wrapper" data-js="outer-frame" style="opacity: 1;"> 
-    <svg viewBox="0 0 1199 969" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <mask id="mask">
-          <rect id="outer-rect-mask-bg" x="0" y="0" fill="white"></rect>
-          <rect class="rect-radius" id="outer-rect-mask-body" x="20" y="20" fill="black"></rect> 
-        </mask> 
-      </defs>
-      <rect class="rect-bg" id="outer-rect-bg" x="0" y="0" fill="var(--color-bg)" mask="url(#mask)"></rect>
-      <rect id="outer-rect-border" class="rect-radius" x="20" y="20" stroke-width="1" fill="var(--color-bg)" fill-opacity="0" stroke="var(--color-border)" vector-effect="non-scaling-stroke"></rect> 
-    </svg>
-  </div>
+    <div class="svg-wrapper" data-js="outer-frame" style="opacity: 1;"> 
+      <svg fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="mask">
+            <rect id="outer-mask-bg" x="0" y="0" fill="white"></rect>
+            <rect id="inner-mask-body" class="rect-radius" fill="black"></rect> 
+          </mask> 
+        </defs>
+        <rect id="outer-rect-bg" class="rect-bg" x="0" y="0" fill="var(--color-bg)" mask="url(#mask)"></rect>
+        <rect id="inner-rect-border" class="rect-radius" stroke-width="1" stroke="var(--color-border)" vector-effect="non-scaling-stroke"></rect> 
+      </svg>
+    </div>
 		<slot />
 	</body>
 </html>
 
 <script>
- // Need to set width, height and viewbox with javascript
+  const svgFrame = document.querySelector('[data-js="outer-frame"] svg');
+  const outerRects = document.querySelectorAll("#outer-mask-bg, #outer-rect-bg");
+  const innerRects = document.querySelectorAll("#inner-mask-body, #inner-rect-border");
+  const GAP = 20;
+
+  if (window) {
+    updateSVGWrapper(); // Initial call
+
+    window.addEventListener("resize", updateSVGWrapper);
+
+  } else {
+    throw new Error("Window does not exist...?")
+  }
+  
+  function updateSVGWrapper() {
+    const vh = window.innerHeight;
+    const vw = window.innerWidth; 
+
+    svgFrame?.setAttribute("width", `${vw}`);
+    svgFrame?.setAttribute("height", `${vh}`);
+    svgFrame?.setAttribute("viewBox", `0 0 ${vw} ${vh}`)
+
+    outerRects.forEach(r => {
+      r.setAttribute("width", `${vw}`);
+      r.setAttribute("height", `${vh}`);
+    });
+
+    innerRects.forEach(r => {
+      r.setAttribute("x", `${GAP}`);
+      r.setAttribute("y", `${GAP}`);
+      r.setAttribute("width", `${vw - 2 * GAP}`);
+      r.setAttribute("height", `${vh - 2 * GAP}`);
+    });
+  }
 </script>
 
 <style is:global>
   :root {
-    --color-border: #ffffff;
-  }
+    --color-white-1: #fff;
+    --color-white-2: #f3f3ff;
+    --color-white-3: #a4a4a4;
+    --color-black-1: #000;
+    --color-black-2: #101016;
+    --color-black-3: #565656;
 
-  .rect-radius {
-    rx: 12px;
+    --color-bg: var(--color-black-2);
+    --color-text: var(--color-white-1);
+    --color-border: var(--color-white-3);
   }
 
 	html,
@@ -50,6 +88,10 @@
     color: white;
   }
 
+  .rect-radius {
+    rx: 12px;
+  }
+
   .svg-wrapper {
     position: fixed;
     width: 100vw;
@@ -57,6 +99,7 @@
     top: 0;
     left: 0;
     pointer-events: none;
+    z-index: 999;
   }
   .svg-wrapper svg{
     display: block;
