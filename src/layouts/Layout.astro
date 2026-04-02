@@ -1,3 +1,13 @@
+---
+  import fl from "figlet";
+  import AnsiShadow from "figlet/fonts/ANSI Shadow";
+
+  fl.parseFont("AnsiShadow", AnsiShadow); // load font
+
+  const BU = fl.textSync("BU", { font: "AnsiShadow" }).trim();
+  const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -9,6 +19,10 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
+    <header id="logo-container">
+      <pre style='color:red;'>{BU}</pre>
+      <pre>{ILDS}</pre>
+    </header>
     <div class="svg-wrapper" data-js="outer-frame" style="opacity: 1;"> 
       <svg fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -18,7 +32,7 @@
           </mask> 
         </defs>
         <rect id="outer-rect-bg" class="rect-bg" x="0" y="0" fill="var(--color-bg)" mask="url(#mask)"></rect>
-        <rect id="inner-rect-border" class="rect-radius" stroke-width="1" stroke="var(--color-border)" vector-effect="non-scaling-stroke"></rect> 
+        <rect id="inner-rect-border" class="rect-radius" stroke-width="1" stroke="var(--color-border)" vector-effect="non-scaling-stroke" rx="12"></rect> 
       </svg>
     </div>
 		<slot />
@@ -26,9 +40,11 @@
 </html>
 
 <script>
+
   const svgFrame = document.querySelector('[data-js="outer-frame"] svg');
   const outerRects = document.querySelectorAll("#outer-mask-bg, #outer-rect-bg");
   const innerRects = document.querySelectorAll("#inner-mask-body, #inner-rect-border");
+  const OFFSET = 20;
   const GAP = 20;
 
   if (window) {
@@ -55,9 +71,9 @@
 
     innerRects.forEach(r => {
       r.setAttribute("x", `${GAP}`);
-      r.setAttribute("y", `${GAP}`);
+      r.setAttribute("y", `${GAP + OFFSET}`);
       r.setAttribute("width", `${vw - 2 * GAP}`);
-      r.setAttribute("height", `${vh - 2 * GAP}`);
+      r.setAttribute("height", `${vh - 3 * GAP}`);
     });
   }
 </script>
@@ -71,7 +87,7 @@
     --color-black-2: #101016;
     --color-black-3: #565656;
 
-    --color-bg: var(--color-black-2);
+    --color-bg: var(--color-black-1);
     --color-text: var(--color-white-1);
     --color-border: var(--color-white-3);
   }
@@ -88,19 +104,33 @@
     color: white;
   }
 
-  .rect-radius {
-    rx: 12px;
+  header {
+    position: fixed;
+    top: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    text-align: center;
+    background-color: black;
+    z-index: 9999;
   }
+  pre {
+    font-size: 0.5rem;
+    display: inline-block;
+    margin: 0;
+  }
+
 
   .svg-wrapper {
     position: fixed;
-    width: 100vw;
+    width: 100dvw;
     height: 100svh;
     top: 0;
     left: 0;
     pointer-events: none;
     z-index: 999;
   }
+
   .svg-wrapper svg{
     display: block;
     position: absolute;
@@ -109,6 +139,7 @@
     top: 0;
     left: 0;
   }
+
   .svg-wrapper rect {
     transform-origin: center;
   }
