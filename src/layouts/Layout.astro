@@ -12,7 +12,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
@@ -78,7 +78,7 @@
   }
 </script>
 
-<style is:global>
+<style>
   :root {
     --color-white-1: #fff;
     --color-white-2: #f3f3ff;
@@ -97,10 +97,15 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
+    background-color: var(--color-bg);
+    overscroll-behavior: none;
 	}
 
+  * {
+    overscroll-behavior: none;
+  }
+
   html {
-    background-color: black;
     color: white;
   }
 
@@ -114,16 +119,16 @@
     background-color: black;
     z-index: 9999;
   }
+
   pre {
-    font-size: 0.5rem;
+    font-size: 8px;
     display: inline-block;
     margin: 0;
   }
 
-
   .svg-wrapper {
     position: fixed;
-    width: 100dvw;
+    width: 100svw;
     height: 100svh;
     top: 0;
     left: 0;
