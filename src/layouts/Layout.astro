@@ -144,9 +144,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 
   #logo-container pre {
     /* Enforcing font-family for consistent styling across most browsers, most... */
-    font-family:
-      Courier New,
-      monospace;
+    font-family: "Courier New", monospace;
     font-size: 0.5rem;
     display: inline-block;
     margin: 0;
@@ -162,15 +160,14 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   }
   main {
     flex: 1;
-    padding: 20px;
-    padding-top: 40px;
+    padding: 40px 20px 20px;
   }
 
   /* SVG specific stylings */
   .svg-wrapper {
     position: fixed;
     width: 100%;
-    height: 100svh;
+    height: 100%;
     top: 0;
     left: 0;
     pointer-events: none;
@@ -179,11 +176,6 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 
   .svg-wrapper svg {
     display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
   }
 
   .svg-wrapper rect {
