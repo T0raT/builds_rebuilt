@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 import fl from "figlet";
 import AnsiShadow from "figlet/fonts/ANSI Shadow";
 
@@ -11,6 +12,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 <!doctype html>
 <html lang="en">
   <head>
+    <Font cssVariable="--font-0xProto" />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -46,8 +48,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
           class="rect-radius"
           stroke-width="1"
           stroke="var(--color-border)"
-          vector-effect="non-scaling-stroke"
-          rx="12"></rect>
+          vector-effect="non-scaling-stroke"></rect>
       </svg>
     </div>
     <div id="app">
@@ -116,6 +117,9 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     --color-bg: var(--color-black-1);
     --color-text: var(--color-white-1);
     --color-border: var(--color-white-3);
+
+    --mobile-padding-top: 40px;
+    --padding-y: 20px;
   }
 
   html,
@@ -155,12 +159,12 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     min-height: 100dvh; /* better on mobile browser UI changes */
     width: 100%;
 
-    display: flex;
-    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: none;
   }
+
   main {
-    flex: 1;
-    padding: 40px 20px 20px;
+    padding: var(--mobile-padding-top) var(--padding-y) var(--padding-y);
   }
 
   /* SVG specific stylings */
