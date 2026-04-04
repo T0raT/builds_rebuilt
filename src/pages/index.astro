@@ -3,8 +3,34 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <p>hi</p>
-  <p>hi</p>
-  <p>hi</p>
-  <p>hi123123123</p>
+  <div class="heading">
+    <h1>BUILDS</h1>
+  </div>
+
+  <style>
+    .heading {
+      border-bottom: solid 1px var(--color-border);
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 40px var(--padding-inner) 0px var(--padding-inner);
+      display: flex;
+      align-items: center;
+    }
+    .heading::after {
+      content: "_";
+      font-size: 2rem;
+      animation: animate 1s step-start infinite;
+    }
+    @keyframes animate {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
 </Layout>

@@ -26,7 +26,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   <body>
     <div id="logo-container">
       <pre style="color:red;">{BU}</pre>
-      <pre>{ILDS}</pre>
+      <pre style="color:var(--color-papaya-white);">{ILDS}</pre>
     </div>
     <div class="svg-wrapper" data-js="outer-frame" style="opacity: 1;">
       <svg fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,8 +67,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   const innerRects = document.querySelectorAll(
     "#inner-mask-body, #inner-rect-border",
   );
-  const OFFSET = 20;
-  const GAP = 20;
+  const GAP = 15;
 
   if (window) {
     updateSVGWrapper(); // Initial call
@@ -93,7 +92,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 
     innerRects.forEach((r) => {
       r.setAttribute("x", `${GAP}`);
-      r.setAttribute("y", `${GAP + OFFSET}`);
+      r.setAttribute("y", `${GAP * 2}`);
       r.setAttribute("width", `${vw - 2 * GAP}`);
       r.setAttribute("height", `${vh - 3 * GAP}`);
     });
@@ -115,11 +114,12 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     --color-papaya-white: #fff4db;
 
     --color-bg: var(--color-black-1);
-    --color-text: var(--color-white-1);
+    --color-text: var(--color-papaya-white);
     --color-border: var(--color-white-3);
 
-    --mobile-padding-top: 40px;
-    --padding-y: 20px;
+    --mobile-padding-top: 30px;
+    --padding-outer: 15px;
+    --padding-inner: 15px;
   }
 
   html,
@@ -128,7 +128,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     height: 100%;
     margin: 0;
     background-color: var(--color-bg);
-    color: white;
+    color: var(--color-text);
     overscroll-behavior: none;
     overflow: hidden;
     font-family: var(--font-ZxProto);
@@ -137,7 +137,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   #logo-container {
     /* The top position needs to be manually adjusted... bruh */
     position: fixed;
-    top: 15px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     width: fit-content;
@@ -165,7 +165,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   }
 
   main {
-    padding: var(--mobile-padding-top) var(--padding-y) var(--padding-y);
+    padding: var(--mobile-padding-top) var(--padding-outer) var(--padding-outer);
   }
 
   /* SVG specific stylings */
