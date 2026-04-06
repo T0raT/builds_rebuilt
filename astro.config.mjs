@@ -28,5 +28,15 @@ export default defineConfig({
         ],
       },
     },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Libre Barcode 128",
+      cssVariable: "--font-Barcode",
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Atkinson Hyperlegible",
+      cssVariable: "--font-Atkinson",
+    },
   ],
 });
