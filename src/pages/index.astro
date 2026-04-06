@@ -5,22 +5,44 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <div class="heading">
     <h1>BUILDS</h1>
+    <h2 class="barcode-text">BUILDS</h2>
   </div>
 
   <style>
     .heading {
       border-bottom: solid 1px var(--color-border);
       font-size: 1.2rem;
-      margin: 0;
-      padding: 40px var(--padding-inner) 0px var(--padding-inner);
+      padding: 60px var(--padding-inner) 0px var(--padding-inner);
       display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+    }
+    .heading h1 {
+      margin: 0;
+      display: flex;
+      justify-content: center;
       align-items: center;
     }
-    .heading::after {
-      content: "_";
-      font-size: 2rem;
+
+    .heading h1::after {
+      margin-left: 5px;
+      content: "\00258c";
+      font-size: 1.1rem;
       animation: animate 1s step-start infinite;
     }
+
+    .heading h2 {
+      margin: 0;
+      margin-left: 4px;
+      font-size: 2rem;
+    }
+
+    .barcode-text {
+      font-family: var(--font-Barcode);
+      letter-spacing: 3px;
+    }
+
     @keyframes animate {
       0% {
         opacity: 1;
