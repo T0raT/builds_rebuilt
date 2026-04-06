@@ -3,42 +3,58 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div class="heading">
-    <h1>BUILDS</h1>
+  <section class="heading">
+    <h1 id="title-1">
+      <span style="color: red;">BU</span> Information Lab and Design Space
+    </h1>
     <h2 class="barcode-text">BUILDS</h2>
-  </div>
+    <p>
+      BUILDS is an inclusive group of students, artists, hackers, and organizers
+      who believe in the do-it-yourself attitude and hacker ethic.
+    </p>
+  </section>
 
   <style>
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      font-family: var(--font-ZxProto);
+    }
+
+    p {
+      font-size: 1rem;
+      font-family: var(--font-Atkinson);
+    }
+
     .heading {
-      border-bottom: solid 1px var(--color-border);
-      font-size: 1.2rem;
+      font-size: 0.8rem;
+      font-family: var(--font-ZxProto);
       padding: 60px var(--padding-inner) 0px var(--padding-inner);
       display: flex;
       flex-direction: column;
       justify-content: start;
       align-items: start;
-    }
-    .heading h1 {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
 
-    .heading h1::after {
-      margin-left: 5px;
-      content: "\00258c";
-      font-size: 1.1rem;
-      animation: animate 1s step-start infinite;
-    }
+      border-bottom: 1px solid var(--color-border);
 
-    .heading h2 {
-      margin: 0;
-      margin-left: 4px;
-      font-size: 2rem;
+      h1::after {
+        content: "\00258c";
+        font-size: 1.1rem;
+        animation: animate 1s step-start infinite;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
     }
 
     .barcode-text {
+      margin: 0.8rem 0 1.5rem 0.1rem;
+      font-size: 2rem;
       font-family: var(--font-Barcode);
       letter-spacing: 3px;
     }
