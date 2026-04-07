@@ -1,0 +1,28 @@
+<button><slot /></button>
+
+<style>
+  button {
+    border: 3px solid var(--color-black-3);
+    cursor: pointer;
+    padding: 7px 15px;
+    margin-bottom: 10px;
+    color: black;
+    background-color: var(--color-papaya-white);
+    transition: all 100ms;
+
+    font-family: var(--font-body);
+  }
+
+  button:hover {
+    border: 3px solid red;
+    color: red;
+    transform: translateX(3px) translateY(-3px);
+    transition: all 170ms;
+  }
+
+  button:active {
+    border: 3px solid red;
+    transform: translateX(-2px) translateY(2px);
+    transition: all 100ms;
+  }
+</style>

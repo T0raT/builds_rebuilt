@@ -1,17 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Button from "@components/Button.astro";
 ---
 
 <Layout>
   <section class="heading">
-    <h1 id="title-1">
-      <span style="color: red;">BU</span> Information Lab and Design Space
-    </h1>
+    <h1 id="title-1"><span>BU</span> Information Lab and Design Space</h1>
     <h2 class="barcode-text">BUILDS</h2>
+    <div class="loc">@ 665 Commonwealth Ave | Room 220</div>
     <p>
-      BUILDS is an inclusive group of students, artists, hackers, and organizers
-      who believe in the do-it-yourself attitude and hacker ethic.
+      An inclusive group of students, artists, hackers, and organizers who
+      believe in the do-it-yourself attitude and hacker ethic.
     </p>
+    <Button>Our Events</Button>
+    <Button>Our Mailing List</Button>
   </section>
 
   <style>
@@ -21,10 +23,12 @@ import Layout from "../layouts/Layout.astro";
       margin: 0;
     }
 
+    h1,
     h2 {
       font-family: var(--font-ZxProto);
     }
 
+    div,
     p {
       font-size: 1rem;
       font-family: var(--font-Atkinson);
@@ -32,7 +36,6 @@ import Layout from "../layouts/Layout.astro";
 
     .heading {
       font-size: 0.8rem;
-      font-family: var(--font-ZxProto);
       padding: 60px var(--padding-inner) 0px var(--padding-inner);
       display: flex;
       flex-direction: column;
@@ -41,13 +44,26 @@ import Layout from "../layouts/Layout.astro";
 
       border-bottom: 1px solid var(--color-border);
 
+      span {
+        color: red;
+      }
+
       h1::after {
+        margin-left: 8px;
         content: "\00258c";
         font-size: 1.1rem;
         animation: animate 1s step-start infinite;
       }
 
       p {
+        margin-bottom: 20px;
+      }
+
+      .loc {
+        border: 1px solid var(--color-border);
+        color: var(--color-black-2);
+        background-color: var(--color-papaya-white);
+        padding: 0.2rem;
         margin-bottom: 20px;
       }
     }
