@@ -1,8 +1,10 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
+import swup from "@swup/astro";
 
 // https://astro.build/config
 export default defineConfig({
+  integrations: [swup()],
   fonts: [
     {
       provider: fontProviders.local(),
