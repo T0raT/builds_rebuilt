@@ -1,6 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Button from "@components/Button.astro";
+import cardOne from "@assets/card_1.webp";
+import cardTwo from "@assets/card_2.webp";
+import cardThree from "@assets/card_3.webp";
 ---
 
 <Layout>
@@ -12,8 +16,45 @@ import Button from "@components/Button.astro";
       An inclusive group of students, artists, hackers, and organizers who
       believe in the do-it-yourself attitude and hacker ethic.
     </p>
-    <Button>Our Events</Button>
-    <Button>Our Mailing List</Button>
+    <div class="button-container">
+      <Button>Our Events</Button>
+      <Button>Our Mailing List</Button>
+    </div>
+  </section>
+  <section class="cards-container">
+    <div class="desc-card">
+      <Image src={cardOne} alt="hero image" />
+      <div class="desc-container">
+        <h3 class="desc-text">Enjoy Our Hackerspace</h3>
+        <p>
+          Our hackerspace is open whenever CDS is open. Come in and work on your
+          projects, or just hang out and chat with other members. Our amazing
+          community is incredibly knowledgeable!
+        </p>
+      </div>
+    </div>
+    <div class="desc-card">
+      <Image src={cardTwo} alt="hero image" />
+      <div class="desc-container">
+        <h3 class="desc-text">Pursue Personal Projects</h3>
+        <p>
+          We provide everything you need to bring your ideas to life. We a
+          variety of tools and equipment available for use, including a 3D
+          printer, soldering irons, power tools, computers, and more.
+        </p>
+      </div>
+    </div>
+    <div class="desc-card">
+      <Image src={cardThree} alt="hero image" />
+      <div class="desc-container">
+        <h3 class="desc-text">Attend Events</h3>
+        <p>
+          We host events (sometimes). Learn some new techologies during our
+          workshop events, gain academic and professional knowledge during our
+          speaker events, etc.
+        </p>
+      </div>
+    </div>
   </section>
 
   <style>
@@ -24,7 +65,8 @@ import Button from "@components/Button.astro";
     }
 
     h1,
-    h2 {
+    h2,
+    h3 {
       font-family: var(--font-ZxProto);
     }
 
@@ -36,11 +78,7 @@ import Button from "@components/Button.astro";
 
     .heading {
       font-size: 0.8rem;
-      padding: 60px var(--padding-inner) 0px var(--padding-inner);
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: start;
+      padding: 60px var(--mobile-padding-inner) 20px var(--mobile-padding-inner);
 
       border-bottom: 1px solid var(--color-border);
 
@@ -51,7 +89,7 @@ import Button from "@components/Button.astro";
       h1::after {
         margin-left: 8px;
         content: "\00258c";
-        font-size: 1.1rem;
+        font-size: 1rem;
         animation: animate 1s step-start infinite;
       }
 
@@ -60,12 +98,23 @@ import Button from "@components/Button.astro";
       }
 
       .loc {
-        border: 1px solid var(--color-border);
         color: var(--color-black-2);
         background-color: var(--color-papaya-white);
         padding: 0.2rem;
         margin-bottom: 20px;
       }
+
+      .button-container {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      max-height: 300px;
+      max-wdith: 300px;
     }
 
     .barcode-text {
@@ -73,6 +122,16 @@ import Button from "@components/Button.astro";
       font-size: 2rem;
       font-family: var(--font-Barcode);
       letter-spacing: 3px;
+    }
+
+    .desc-card {
+      border-bottom: 1px solid var(--color-border);
+      .desc-container {
+        padding: 0 var(--mobile-padding-inner) var(--mobile-padding-inner);
+      }
+      h3 {
+        color: red;
+      }
     }
 
     @keyframes animate {

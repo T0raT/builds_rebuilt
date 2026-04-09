@@ -26,10 +26,10 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     <title>Astro Basics</title>
   </head>
   <body>
-    <div id="logo-container">
+    <header id="logo-container">
       <pre style="color:red;">{BU}</pre>
       <pre style="color:var(--color-papaya-white);">{ILDS}</pre>
-    </div>
+    </header>
     <div class="svg-wrapper" data-js="outer-frame" style="opacity: 1;">
       <svg fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -120,8 +120,8 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     --color-border: var(--color-white-3);
 
     --mobile-padding-top: 30px;
-    --padding-outer: 15px;
-    --padding-inner: 15px;
+    --mobile-padding-outer: 15px;
+    --mobile-padding-inner: 15px;
 
     --font-body: var(--font-Atkinson);
   }
@@ -133,7 +133,6 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     margin: 0;
     background-color: var(--color-bg);
     color: var(--color-text);
-    overscroll-behavior: none;
     overflow: hidden;
     font-family: var(--font-ZxProto);
   }
@@ -141,7 +140,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   #logo-container {
     /* The top position needs to be manually adjusted... bruh */
     position: fixed;
-    top: 10px;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
     width: fit-content;
@@ -149,6 +148,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     text-align: center;
     background-color: black;
     z-index: 9999;
+    height: 50px;
   }
 
   #logo-container pre {
@@ -160,16 +160,18 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   }
 
   #app {
-    min-height: 100vh; /* fallback */
-    min-height: 100dvh; /* better on mobile browser UI changes */
+    height: 100vh; /* fallback */
+    height: 100dvh; /* better on mobile browser UI changes */
     width: 100%;
 
-    overflow-y: auto;
+    overflow-y: scroll;
+    overscroll-behavior: none;
     scrollbar-width: none;
   }
 
   main {
-    margin: var(--mobile-padding-top) var(--padding-outer) var(--padding-outer);
+    margin: var(--mobile-padding-top) var(--mobile-padding-outer)
+      var(--mobile-padding-outer);
   }
 
   /* SVG specific stylings */
