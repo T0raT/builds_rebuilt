@@ -5,11 +5,12 @@ import Button from "@components/Button.astro";
 import cardOne from "@assets/card_1.webp";
 import cardTwo from "@assets/card_2.webp";
 import cardThree from "@assets/card_3.webp";
+import PlaceholderBlock from "@components/PlaceholderBlock.astro";
 ---
 
 <Layout>
   <section class="heading">
-    <h1 id="title-1"><span>BU</span> Information Lab and Design Space</h1>
+    <h1><span>BU</span> Information Lab and Design Space</h1>
     <h2 class="barcode-text">BUILDS</h2>
     <div class="loc">@ 665 Commonwealth Ave | Room 220</div>
     <p>
@@ -18,7 +19,7 @@ import cardThree from "@assets/card_3.webp";
     </p>
     <div class="button-container">
       <Button>Our Events</Button>
-      <Button>Our Mailing List</Button>
+      <Button>Join our Discord!</Button>
     </div>
   </section>
   <section class="cards-container">
@@ -57,93 +58,168 @@ import cardThree from "@assets/card_3.webp";
     </div>
   </section>
 
-  <style>
-    h1,
-    h2,
-    p {
-      margin: 0;
-    }
+  <section class="hacking-desc">
+    <h2>What is <span style="color: red;">Hacking?</span></h2>
+    <p>
+      The idea of hacking is learning and building upon existing ideas and
+      reinventing systems.
+    </p>
+    <br />
+    <p>
+      Think of hacking as the opportunity to take things apart, fix, or improve
+      upon those ideas or systems to learn and understand how they work.
+    </p>
+    <br />
+    <p>
+      No matter who you are, you can create art and something inspiring on a
+      computer, electronics, and anything that you put your mind to.
+    </p>
+    <br />
+    <p>
+      If you feel strongly about an idea or want to learn about something, show
+      your enthusiasm, be bold, and you’ll find people who share your passion of
+      discovery and learning here at BUILDS!
+    </p>
+    <br />
+    <h3>The Philosophy of the Hacker Ethic</h3>
+    <ul>
+      <li>Figure things out</li>
+      <li>Improve what already exists</li>
+      <li>Share your knowledge</li>
+      <li>Mistrust authority</li>
+      <li>Promote decentralization</li>
+    </ul>
+  </section>
 
-    h1,
-    h2,
-    h3 {
-      font-family: var(--font-ZxProto);
-    }
-
-    div,
-    p {
-      font-size: 1rem;
-      font-family: var(--font-Atkinson);
-    }
-
-    .heading {
-      font-size: 0.8rem;
-      padding: 60px var(--mobile-padding-inner) 20px var(--mobile-padding-inner);
-
-      border-bottom: 1px solid var(--color-border);
-
-      span {
-        color: red;
-      }
-
-      h1::after {
-        margin-left: 8px;
-        content: "\00258c";
-        font-size: 1rem;
-        animation: animate 1s step-start infinite;
-      }
-
-      p {
-        margin-bottom: 20px;
-      }
-
-      .loc {
-        color: var(--color-black-2);
-        background-color: var(--color-papaya-white);
-        padding: 0.2rem;
-        margin-bottom: 20px;
-      }
-
-      .button-container {
-        display: flex;
-        gap: 1rem;
-      }
-    }
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      max-height: 300px;
-      max-wdith: 300px;
-    }
-
-    .barcode-text {
-      margin: 0.8rem 0 1.5rem 0.1rem;
-      font-size: 2rem;
-      font-family: var(--font-Barcode);
-      letter-spacing: 3px;
-    }
-
-    .desc-card {
-      border-bottom: 1px solid var(--color-border);
-      .desc-container {
-        padding: 0 var(--mobile-padding-inner) var(--mobile-padding-inner);
-      }
-      h3 {
-        color: red;
-      }
-    }
-
-    @keyframes animate {
-      0% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-  </style>
+  <section class="contacts">
+    <PlaceholderBlock />
+    <div class="contact-card">
+      <h3 style="color: red;">Contact Us</h3>
+      <p>
+        665 Commonwealth Ave
+        <br /> Room 220
+        <br /> Boston, MA 02215
+      </p>
+      <br />
+      <p>builds@bu.edu</p>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  h1,
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-ZxProto);
+  }
+
+  div,
+  p,
+  li {
+    font-size: 1rem;
+    font-family: var(--font-Atkinson);
+  }
+
+  .heading {
+    padding: 60px var(--mobile-padding-inner) 20px var(--mobile-padding-inner);
+    border-bottom: 1px solid var(--color-border);
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    span {
+      color: red;
+    }
+
+    h1::after {
+      margin-left: 8px;
+      content: "\00258c";
+      font-size: 1.4rem;
+      animation: animate 1s step-start infinite;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    .loc {
+      text-align: center;
+      color: var(--color-black-2);
+      background-color: var(--color-papaya-white);
+      padding: 0.2rem;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: 300px;
+    max-wdith: 300px;
+  }
+
+  .barcode-text {
+    margin: 0.8rem 0 1.5rem 0.1rem;
+    font-size: 2rem;
+    font-family: var(--font-Barcode);
+    letter-spacing: 3px;
+  }
+
+  .desc-card {
+    border-bottom: 1px solid var(--color-border);
+    .desc-container {
+      padding: 0 var(--mobile-padding-inner) var(--mobile-padding-inner);
+    }
+    h3 {
+      color: red;
+    }
+  }
+
+  .hacking-desc {
+    padding: var(--mobile-padding-inner);
+    border-bottom: 1px solid var(--color-border);
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding-left: var(--mobile-padding-inner);
+    }
+  }
+
+  .contacts {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    .contact-card {
+      padding-left: var(--mobile-padding-inner);
+      padding-bottom: var(--mobile-padding-inner);
+    }
+  }
+
+  @keyframes animate {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
