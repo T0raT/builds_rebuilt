@@ -1,5 +1,6 @@
 ---
 import { Font } from "astro:assets";
+
 import fl from "figlet";
 import AnsiShadow from "figlet/fonts/ANSI Shadow";
 
@@ -54,7 +55,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
       </svg>
     </div>
     <div id="app">
-      <main>
+      <main id="swup" class="transition-fade">
         <slot />
       </main>
     </div>
@@ -62,6 +63,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 </html>
 
 <script>
+  // SVG related code below
   const svgFrame = document.querySelector('[data-js="outer-frame"] svg');
   const outerRects = document.querySelectorAll(
     "#outer-mask-bg, #outer-rect-bg",
