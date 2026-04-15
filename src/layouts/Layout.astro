@@ -103,6 +103,27 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   }
 </script>
 
+<style is:global>
+  body {
+    font-family: var(--font-Atkinson);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-ZxProto);
+  }
+
+  h1,
+  h2,
+  p {
+    margin: 0;
+  }
+</style>
+
 <style>
   :root {
     --color-white-1: #fff;
@@ -124,8 +145,6 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     --mobile-padding-top: 30px;
     --mobile-padding-outer: 15px;
     --mobile-padding-inner: 15px;
-
-    --font-body: var(--font-Atkinson);
   }
 
   html,
@@ -136,7 +155,6 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     background-color: var(--color-bg);
     color: var(--color-text);
     overflow: hidden;
-    font-family: var(--font-ZxProto);
   }
 
   #logo-container {
@@ -148,7 +166,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     width: fit-content;
     white-space: nowrap;
     text-align: center;
-    background-color: black;
+    background-color: var(--color-bg);
     z-index: 9999;
     height: 50px;
   }
