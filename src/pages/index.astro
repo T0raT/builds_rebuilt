@@ -11,7 +11,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
 <Layout>
   <section class="heading">
     <h1><span>BU</span> Information Lab and Design Space</h1>
-    <h2 class="barcode-text">BUILDS</h2>
+    <h2 class="header-barcode">BUILDS</h2>
   </section>
 
   <div class="grid-wrapper">
@@ -36,7 +36,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     </section>
     <section class="cards-container">
       <div class="desc-card">
-        <Image src={cardOne} alt="hero image" />
+        <Image src={cardOne} alt="Builds lab plaque" />
         <div class="desc-container">
           <h3 class="desc-text">Enjoy Our Hackerspace</h3>
           <p>
@@ -48,7 +48,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
       </div>
       <PlaceholderBlock class="placeholder-1" />
       <div class="desc-card">
-        <Image src={cardTwo} alt="hero image" />
+        <Image src={cardTwo} alt="Builds safety hard hat" />
         <div class="desc-container">
           <h3 class="desc-text">Pursue Personal Projects</h3>
           <p>
@@ -59,7 +59,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
         </div>
       </div>
       <div class="desc-card">
-        <Image src={cardThree} alt="hero image" />
+        <Image src={cardThree} alt="Builds room" />
         <div class="desc-container">
           <h3 class="desc-text">Attend Events</h3>
           <p>
@@ -103,6 +103,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
         <li>Mistrust authority</li>
         <li>Promote decentralization</li>
       </ul>
+      <h3 class="text-barcode">HACKING</h3>
     </section>
   </div>
 
@@ -117,20 +118,21 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
       </p>
       <br />
       <p>builds@bu.edu</p>
+      <p class="text-barcode">CONTACTS</p>
     </div>
   </section>
 </Layout>
 
 <style>
-  .barcode-text {
-    margin: 0.8rem 0 1.5rem 0.1rem;
-    font-size: 2rem;
-    font-family: var(--font-Barcode);
-    letter-spacing: 3px;
-  }
-
   h1 {
     font-size: 2.2rem;
+  }
+
+  .text-barcode {
+    font-family: var(--font-Barcode);
+    letter-spacing: 3px;
+    margin: 0;
+    text-align: end;
   }
 
   .heading {
@@ -145,6 +147,12 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
       content: "\00258c";
       font-size: 1.4rem;
       animation: animate 1s step-start infinite;
+    }
+    .header-barcode {
+      margin: 0.8rem 0 1.5rem 0.1rem;
+      font-size: 2rem;
+      font-family: var(--font-Barcode);
+      letter-spacing: 3px;
     }
   }
 
@@ -213,12 +221,14 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     grid-template-rows: 100px 1fr;
 
     .contact-card {
-      padding-left: var(--mobile-padding-inner);
-      padding-bottom: var(--mobile-padding-inner);
+      padding: 0 var(--mobile-padding-inner) var(--mobile-padding-inner);
     }
   }
 
   @media (min-width: 600px) {
+    .text-barcode {
+      font-size: calc(1rem + 1vw);
+    }
     .hero {
       .loc {
         max-width: fit-content;
@@ -272,10 +282,9 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
       h1::after {
         font-size: calc(1.4rem + 1vw);
       }
-    }
-
-    .barcode-text {
-      font-size: calc(2rem + 1vw);
+      .header-barcode {
+        font-size: calc(2rem + 1vw);
+      }
     }
 
     .cards-container {
