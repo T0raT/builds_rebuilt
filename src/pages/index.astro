@@ -15,6 +15,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
   </section>
 
   <div class="grid-wrapper">
+    <!-- This grid wrapper is currently unused -->
     <section class="hero">
       <div class="loc">@ 665 Commonwealth Ave | Room 220</div>
       <p>
@@ -29,8 +30,8 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
         their passions.
       </p>
       <div class="button-container">
-        <Button>Our Events</Button>
-        <Button>Join our Discord!</Button>
+        <Button class="link-btn">Our Events</Button>
+        <Button class="link-btn">Join our Discord!</Button>
       </div>
     </section>
     <section class="cards-container">
@@ -130,7 +131,6 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
 
   h1 {
     font-size: 2.2rem;
-    font-weight: normal;
   }
 
   .heading {
@@ -246,13 +246,26 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     }
 
     .contacts {
-      grid-template-rows: 200px 1fr;
+      grid-template-rows: 180px 1fr;
     }
   }
 
   @media (min-width: 1100px) {
+    section,
+    .link-btn {
+      font-size: calc(1rem + 0.2vw);
+    }
+
     h1 {
       font-size: calc(2.2rem + 1vw);
+    }
+
+    h2 {
+      font-size: calc(1.5rem + 0.5vw);
+    }
+
+    h3 {
+      font-size: calc(1.17rem + 0.3vw);
     }
 
     .heading {
@@ -274,9 +287,18 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
 
     .contacts {
       grid-template-columns: 1fr 1fr;
+      grid-template-rows: fit-content(200px);
 
       .placeholder-2 {
         border-right: 1px solid var(--color-border);
+      }
+    }
+  }
+
+  @media (min-width: 1500px) {
+    .cards-container {
+      img {
+        height: 450px;
       }
     }
   }
