@@ -1,4 +1,8 @@
-<button><slot /></button>
+---
+const { class: className, ...rest } = Astro.props;
+---
+
+<button class={className} {...rest}><slot /></button>
 
 <style>
   button {
@@ -10,7 +14,6 @@
     transition: all 100ms;
 
     font-family: var(--font-body);
-    font-size: 1rem;
   }
 
   button:hover {
