@@ -1,0 +1,47 @@
+---
+import fl from "figlet";
+import AnsiShadow from "figlet/fonts/ANSI Shadow";
+fl.parseFont("AnsiShadow", AnsiShadow); // load font
+const BU = fl.textSync("BU", { font: "AnsiShadow" }).trim();
+const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
+---
+
+<header id="logo-container">
+  <pre style="color:red;">{BU}</pre>
+  <pre style="color:var(--color-papaya-white);">{ILDS}</pre>
+</header>
+<style>
+  #logo-container {
+    /* The top position needs to be manually adjusted... bruh */
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: fit-content;
+    white-space: nowrap;
+    text-align: center;
+    background-color: var(--color-bg);
+    z-index: 9999;
+    height: 55px;
+  }
+
+  #logo-container pre {
+    /* Enforcing font-family for consistent styling across most browsers, most... */
+    font-family: monospace;
+    font-size: 0.5rem;
+    display: inline-block;
+    margin: 0;
+  }
+
+  @media (min-width: 850px) {
+    #logo-container {
+      top: 18px;
+      left: 90px;
+      transform: none;
+      height: 95px;
+    }
+    #logo-container pre {
+      font-size: 0.8rem;
+    }
+  }
+</style>
