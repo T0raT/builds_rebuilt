@@ -87,7 +87,7 @@ import Logo from "@components/Logo.astro";
       r.setAttribute("height", `${vh}`);
     });
 
-    if (vw < 850) {
+    if (vw < 767) {
       // Mobile check, based on logo's media query
       innerRects.forEach((r) => {
         r.setAttribute("x", `${GAP}`);
@@ -198,7 +198,7 @@ import Logo from "@components/Logo.astro";
     transform-origin: center;
   }
 
-  @media (min-width: 850px) {
+  @media (min-width: 767px) {
     main {
       margin: var(--desktop-padding-top) var(--desktop-padding-outer)
         var(--desktop-padding-outer);
