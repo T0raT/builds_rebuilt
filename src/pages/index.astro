@@ -229,7 +229,13 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     .text-barcode {
       font-size: calc(1rem + 1vw);
     }
+
+    .heading {
+      padding: 100px var(--desktop-padding-inner) var(--desktop-padding-inner);
+    }
+
     .hero {
+      padding: 0 var(--desktop-padding-inner) var(--desktop-padding-inner);
       .loc {
         max-width: fit-content;
         padding: 0.2rem 0.5rem;
@@ -249,18 +255,32 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
       grid-template-columns: 1fr 1fr;
       .desc-card {
         border-right: 1px solid var(--color-border);
+
+        .desc-container {
+          padding: 0 var(--desktop-padding-inner) var(--desktop-padding-inner);
+        }
       }
       .placeholder-1 {
         display: block;
       }
     }
 
+    .hacking-desc {
+      padding: var(--desktop-padding-inner);
+    }
+
     .contacts {
       grid-template-rows: 180px 1fr;
+      .contact-card {
+        padding: 0px var(--desktop-padding-inner) var(--desktop-padding-inner);
+      }
     }
   }
 
   @media (min-width: 1100px) {
+    .heading {
+      padding: 120px var(--desktop-padding-inner) var(--desktop-padding-inner);
+    }
     section,
     .link-btn {
       font-size: calc(1rem + 0.2vw);
