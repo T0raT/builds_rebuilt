@@ -12,7 +12,6 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 </header>
 <style>
   #logo-container {
-    /* The top position needs to be manually adjusted... bruh */
     position: fixed;
     top: 8px;
     left: 50%;
@@ -22,15 +21,15 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     text-align: center;
     background-color: var(--color-bg);
     z-index: 9999;
-    height: 55px;
   }
 
   #logo-container pre {
-    /* Enforcing font-family for consistent styling across most browsers, most... */
-    font-family: monospace;
-    font-size: 0.5rem;
+    font-family: "Courier New", monospace;
+    font-size: 8px;
+    line-height: 1;
     display: inline-block;
     margin: 0;
+    padding: 0;
   }
 
   @media (min-width: 767px) {
@@ -38,10 +37,9 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
       top: 18px;
       left: 90px;
       transform: none;
-      height: 89px;
     }
     #logo-container pre {
-      font-size: 0.75rem;
+      font-size: 15px;
     }
   }
 </style>
