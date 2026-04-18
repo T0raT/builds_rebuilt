@@ -1,11 +1,54 @@
 ---
-import HamburgerIcon from "@assets/hamburger-menu.svg";
-const { class: className, ...rest } = Astro.props;
+import HamburgerIconSVG from "@assets/hamburger-menu.svg";
 ---
 
-<div class={className} {...rest}>
-  <HamburgerIcon />
+<div id="hamburger">
+  <HamburgerIconSVG />
 </div>
+
+<script>
+  import { animate } from "animejs";
+  /* 
+ *  1. Hamburger Icon component create a custom event
+    2. Dispatch said custom event on a click event.
+    3. Event listener on `to be animated` components to catch event
+    4. Morphs SVG frame
+    5. Show/Hide mobile nav menu
+ * */
+  const navEvent = new CustomEvent("navEvent");
+  const hamburger = document.querySelector("#hamburger");
+
+  try {
+    hamburger?.addEventListener("click", () => {
+      // Toggling an attribute returns true/false as return value
+      const open = document.body.toggleAttribute("data-nav-open");
+      document.dispatchEvent(
+        new CustomEvent("navEvent", {
+          detail: open,
+        }),
+      );
+    });
+  } catch (e) {
+    console.log(`Error with MobileNavIcon: ${e}`);
+  }
+
+  document.addEventListener("navEvent", (e) => {
+    const navEvent = e as CustomEvent;
+    if (navEvent.detail === true) {
+      animate("#hamburger", {
+        duration: 500,
+        ease: "outElastic(1,2)",
+        translateY: `120`,
+      });
+    } else {
+      animate("#hamburger", {
+        duration: 500,
+        ease: "outElastic(1,2)",
+        translateY: `0`,
+      });
+    }
+  });
+</script>
 
 <style>
   div {

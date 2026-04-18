@@ -23,6 +23,8 @@
   </svg>
 </div>
 <script>
+  import { animate } from "animejs";
+
   // SVG related code below
   const svgFrame = document.querySelector('[data-js="outer-frame"] svg');
   const outerRects = document.querySelectorAll(
@@ -34,17 +36,40 @@
   const GAP = 15;
   const GAPDesktop = 20;
 
-  if (window) {
-    updateSVGWrapper(); // Initial call
+  let vh = window.innerHeight;
+  let vw = window.innerWidth;
 
+  if (window) {
+    updateSVGWrapper(); // Initial call to draw SVG
     window.addEventListener("resize", updateSVGWrapper);
   } else {
     throw new Error("Window does not exist...?");
   }
 
+  document.addEventListener("navEvent", (e) => {
+    console.log(`event caught:${e}`);
+    const navEvent = e as CustomEvent; // Event casting is necessary to avoid errors
+
+    if (navEvent.detail === true) {
+      animate(["#inner-mask-body", "#inner-rect-border"], {
+        duration: 500,
+        ease: "outElastic(1,2)",
+        y: `+=120`,
+        height: `-=120`,
+      });
+    } else {
+      animate(["#inner-mask-body", "#inner-rect-border"], {
+        duration: 500,
+        ease: "outElastic(1,2)",
+        y: `-=120`,
+        height: `+=120`,
+      });
+    }
+  });
+
   function updateSVGWrapper() {
-    const vh = window.innerHeight;
-    const vw = window.innerWidth;
+    vh = window.innerHeight;
+    vw = window.innerWidth;
     console.log(`width: ${vw}`);
     console.log(`height: ${vh}`);
 

@@ -11,6 +11,27 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
   <pre style="color:red;">{BU}</pre>
   <pre style="color:var(--color-papaya-white);">{ILDS}</pre>
 </header>
+
+<script>
+  import { animate } from "animejs";
+
+  document.addEventListener("navEvent", (e) => {
+    const navEvent = e as CustomEvent;
+    if (navEvent.detail === true) {
+      animate(`#logo-container`, {
+        duration: 500,
+        ease: "outElastic(1,2)",
+        top: `+=120`,
+      });
+    } else {
+      animate(`#logo-container`, {
+        duration: 500,
+        ease: "outElastic(1,2)",
+        top: `-=120`,
+      });
+    }
+  });
+</script>
 <style>
   #logo-container {
     position: fixed;

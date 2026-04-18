@@ -33,6 +33,11 @@ import SVGWrapper from "@components/SVGWrapper.astro";
   </body>
 </html>
 
+<script>
+  import { engine } from "animejs";
+  engine.defaults.frameRate = 120; // 120FPS WEEWOOWEEWOO
+</script>
+
 <style is:global>
   body {
     font-family: var(--font-Atkinson);
