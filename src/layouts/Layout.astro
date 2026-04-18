@@ -1,6 +1,8 @@
 ---
 import { Font } from "astro:assets";
 import Logo from "@components/Logo.astro";
+import MobileNavIcon from "@components/MobileNavIcon.astro";
+import SVGWrapper from "@components/SVGWrapper.astro";
 ---
 
 <!doctype html>
@@ -21,29 +23,8 @@ import Logo from "@components/Logo.astro";
   </head>
   <body>
     <Logo />
-    <div class="svg-wrapper" data-js="outer-frame" style="opacity: 1;">
-      <svg fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <mask id="mask">
-            <rect id="outer-mask-bg" x="0" y="0" fill="white"></rect>
-            <rect id="inner-mask-body" class="rect-radius" fill="black"></rect>
-          </mask>
-        </defs>
-        <rect
-          id="outer-rect-bg"
-          class="rect-bg"
-          x="0"
-          y="0"
-          fill="var(--color-bg)"
-          mask="url(#mask)"></rect>
-        <rect
-          id="inner-rect-border"
-          class="rect-radius"
-          stroke-width="1"
-          stroke="var(--color-border)"
-          vector-effect="non-scaling-stroke"></rect>
-      </svg>
-    </div>
+    <MobileNavIcon />
+    <SVGWrapper />
     <div id="app">
       <main id="swup" class="transition-fade">
         <slot />
@@ -51,60 +32,6 @@ import Logo from "@components/Logo.astro";
     </div>
   </body>
 </html>
-
-<script>
-  // SVG related code below
-  const svgFrame = document.querySelector('[data-js="outer-frame"] svg');
-  const outerRects = document.querySelectorAll(
-    "#outer-mask-bg, #outer-rect-bg",
-  );
-  const innerRects = document.querySelectorAll(
-    "#inner-mask-body, #inner-rect-border",
-  );
-  const GAP = 15;
-  const GAPDesktop = 20;
-
-  if (window) {
-    updateSVGWrapper(); // Initial call
-
-    window.addEventListener("resize", updateSVGWrapper);
-  } else {
-    throw new Error("Window does not exist...?");
-  }
-
-  function updateSVGWrapper() {
-    const vh = window.innerHeight;
-    const vw = window.innerWidth;
-    console.log(`width: ${vw}`);
-    console.log(`height: ${vh}`);
-
-    svgFrame?.setAttribute("width", `${vw}`);
-    svgFrame?.setAttribute("height", `${vh}`);
-    svgFrame?.setAttribute("viewBox", `0 0 ${vw} ${vh}`);
-
-    outerRects.forEach((r) => {
-      r.setAttribute("width", `${vw}`);
-      r.setAttribute("height", `${vh}`);
-    });
-
-    if (vw < 767) {
-      // Mobile check, based on logo's media query
-      innerRects.forEach((r) => {
-        r.setAttribute("x", `${GAP}`);
-        r.setAttribute("y", `${GAP * 2}`);
-        r.setAttribute("width", `${vw - 2 * GAP}`);
-        r.setAttribute("height", `${vh - 3 * GAP}`);
-      });
-    } else {
-      innerRects.forEach((r) => {
-        r.setAttribute("x", `${GAPDesktop}`);
-        r.setAttribute("y", `${GAPDesktop * 3}`);
-        r.setAttribute("width", `${vw - 2 * GAPDesktop}`);
-        r.setAttribute("height", `${vh - 4 * GAPDesktop}`);
-      });
-    }
-  }
-</script>
 
 <style is:global>
   body {
@@ -180,23 +107,6 @@ import Logo from "@components/Logo.astro";
   }
 
   /* SVG specific stylings */
-  .svg-wrapper {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 999;
-  }
-
-  .svg-wrapper svg {
-    display: block;
-  }
-
-  .svg-wrapper rect {
-    transform-origin: center;
-  }
 
   @media (min-width: 767px) {
     main {
