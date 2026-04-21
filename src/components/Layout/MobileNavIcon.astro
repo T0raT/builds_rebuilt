@@ -15,7 +15,7 @@ import HamburgerIconSVG from "@assets/hamburger-menu.svg";
     4. Morphs SVG frame
     5. Show/Hide mobile nav menu
  * */
-  const navEvent = new CustomEvent("navEvent");
+  //  const navEvent = new CustomEvent("navEvent");
   const hamburger = document.querySelector("#hamburger");
 
   try {
@@ -59,8 +59,8 @@ import HamburgerIconSVG from "@assets/hamburger-menu.svg";
     top: 30px;
     border-bottom: 1px solid var(--color-border);
     border-left: 1px solid var(--color-border);
-
     background-color: var(--color-bg);
+    z-index: 2000;
   }
   svg {
     width: 100%;
