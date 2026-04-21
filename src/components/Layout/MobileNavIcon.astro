@@ -7,30 +7,28 @@ import HamburgerIconSVG from "@assets/hamburger-menu.svg";
 </div>
 
 <script>
+  /*
+   * A data attribute is toggled when this icon is clicked,
+   * simutaneously fires/dispatches a CustomEvent with data toggled boolean custom data.
+   *
+   * Components that needs to be animated listens for this CustomEvent,
+   * in order to reveal MobileNavMenu.
+   * */
+
   import { animate } from "animejs";
-  /* 
- *  1. Hamburger Icon component create a custom event
-    2. Dispatch said custom event on a click event.
-    3. Event listener on `to be animated` components to catch event
-    4. Morphs SVG frame
-    5. Show/Hide mobile nav menu
- * */
+
   //  const navEvent = new CustomEvent("navEvent");
   const hamburger = document.querySelector("#hamburger");
 
-  try {
-    hamburger?.addEventListener("click", () => {
-      // Toggling an attribute returns true/false as return value
-      const navStatus = document.body.toggleAttribute("data-nav-open");
-      document.dispatchEvent(
-        new CustomEvent("navEvent", {
-          detail: navStatus,
-        }),
-      );
-    });
-  } catch (e) {
-    console.log(`Error with MobileNavIcon: ${e}`);
-  }
+  hamburger?.addEventListener("click", () => {
+    // Toggling an attribute returns true/false as return value
+    const navStatus = document.body.toggleAttribute("data-nav-open");
+    document.dispatchEvent(
+      new CustomEvent("navEvent", {
+        detail: navStatus,
+      }),
+    );
+  });
 
   document.addEventListener("navEvent", (e) => {
     const navEvent = e as CustomEvent;
