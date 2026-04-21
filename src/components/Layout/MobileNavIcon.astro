@@ -21,10 +21,10 @@ import HamburgerIconSVG from "@assets/hamburger-menu.svg";
   try {
     hamburger?.addEventListener("click", () => {
       // Toggling an attribute returns true/false as return value
-      const open = document.body.toggleAttribute("data-nav-open");
+      const navStatus = document.body.toggleAttribute("data-nav-open");
       document.dispatchEvent(
         new CustomEvent("navEvent", {
-          detail: open,
+          detail: navStatus,
         }),
       );
     });

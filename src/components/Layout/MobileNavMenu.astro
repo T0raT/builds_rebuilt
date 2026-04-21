@@ -8,8 +8,17 @@
 
 <script>
   import { animate } from "animejs";
+
   const navMenu = document.getElementById("mobile-nav");
   if (!navMenu) throw new Error("mobile-nav does not exist somehow");
+
+  const allLinks = document.querySelectorAll("li");
+  allLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      document.body.removeAttribute("data-nav-open");
+      document.dispatchEvent(new CustomEvent("navEvent", { detail: false }));
+    });
+  });
 
   document.addEventListener("navEvent", (e) => {
     const navEvent = e as CustomEvent;
