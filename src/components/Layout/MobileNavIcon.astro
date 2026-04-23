@@ -17,28 +17,30 @@ import HamburgerIconSVG from "@assets/hamburger-menu.svg";
 
   import { animate } from "animejs";
 
-  //  const navEvent = new CustomEvent("navEvent");
+  const navOpen = new CustomEvent("navOpen");
+  const navClose = new CustomEvent("navClose");
   const hamburger = document.querySelector("#hamburger");
 
   hamburger?.addEventListener("click", () => {
     // Toggling an attribute returns true/false as return value
-    const navStatus = document.body.toggleAttribute("data-nav-open");
-    document.dispatchEvent(
-      new CustomEvent("navEvent", {
-        detail: navStatus,
-      }),
-    );
+    const openNav = document.body.toggleAttribute("data-nav-open");
+    openNav
+      ? document.dispatchEvent(navOpen)
+      : document.dispatchEvent(navClose);
   });
 
-  document.addEventListener("navEvent", (e) => {
-    const navEvent = e as CustomEvent;
-    if (navEvent.detail === true) {
+  document.addEventListener("navOpen", () => {
+    if (document.body.hasAttribute("data-nav-open")) {
       animate("#hamburger", {
         duration: 500,
         ease: "outElastic(1,2)",
         translateY: `120`,
       });
-    } else {
+    }
+  });
+
+  document.addEventListener("navClose", () => {
+    if (!document.body.hasAttribute("data-nav-open")) {
       animate("#hamburger", {
         duration: 500,
         ease: "outElastic(1,2)",

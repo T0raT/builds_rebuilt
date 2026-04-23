@@ -1,9 +1,19 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+---
+
 <nav id="mobile-nav">
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/events">Events</a></li>
-    <li><a href="/eboard">E-Board</a></li>
+    <li>
+      <a href="/" aria-label="Builds home page">Home</a>
+    </li>
+    <li>
+      <a href="/events" aria-label="Builds events page">Events</a>
+    </li>
+    <li><a href="/eboard" aria-label="Builds eboard page">E-Board</a></li>
   </ul>
+  <div id="highlight"></div>
 </nav>
 
 <script>
@@ -12,33 +22,71 @@
    * CustomEvent to notify components to animate the "closing" animation.
    * */
   import { animate } from "animejs";
+  import { getCurrentUrl } from "swup";
 
-  const navMenu = document.getElementById("mobile-nav");
-  if (!navMenu) throw new Error("mobile-nav does not exist somehow");
+  const $navMenu = document.getElementById("mobile-nav");
+  if (!$navMenu) throw new Error("mobile-nav does not exist somehow");
+  const $allLinks = $navMenu.querySelectorAll("li");
+  const $highlightBlock = $navMenu.querySelector("#highlight");
 
-  const allLinks = document.querySelectorAll("li");
+  function updateActiveLink() {
+    const url = getCurrentUrl();
+    $allLinks.forEach(($link) => {
+      const $anchor = $link.children[0];
+      const href = $anchor.getAttribute("href");
+      if (href === url) {
+        $link.classList.add("active");
 
-  allLinks.forEach((link) => {
-    link.addEventListener("click", () => {
+        const { width, height, x, y } = $link.getBoundingClientRect();
+        console.log(x, y);
+        animate($highlightBlock as HTMLElement, {
+          width: width,
+          height: height,
+          x: x,
+          y: y,
+          duration: 200,
+          ease: "out(5.82)",
+        });
+      } else {
+        $link.classList.remove("active");
+      }
+    });
+  }
+
+  function toggleNav() {
+    if (!$navMenu) throw new Error("mobile-nav does not exist somehow");
+    if (document.body.hasAttribute("data-nav-open")) {
+      $navMenu.style.opacity = "1";
+      $navMenu.style.visibility = "visible";
+    } else if (!document.body.hasAttribute("data-nav-open")) {
+      $navMenu.style.opacity = "0";
+      $navMenu.style.visibility = "hidden";
+    }
+  }
+
+  updateActiveLink();
+  document.addEventListener("swup:page:view", () => {
+    updateActiveLink();
+  });
+
+  // Below are code responsible for navOpen and navClose events
+
+  $allLinks.forEach(($link) => {
+    $link.addEventListener("click", () => {
       document.body.removeAttribute("data-nav-open");
-      document.dispatchEvent(new CustomEvent("navEvent", { detail: false }));
+      document.dispatchEvent(new CustomEvent("navClose"));
     });
   });
 
-  document.addEventListener("navEvent", (e) => {
-    const navEvent = e as CustomEvent;
-    if (navEvent.detail === true) {
-      navMenu.style.opacity = "1";
-      navMenu.style.visibility = "visible";
-    } else {
-      navMenu.style.opacity = "0";
-      navMenu.style.visibility = "hidden";
-    }
-  });
+  document.addEventListener("navOpen", toggleNav);
+  document.addEventListener("navClose", toggleNav);
 </script>
 
 <style>
   nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
     z-index: 1999;
     position: fixed;
@@ -46,16 +94,38 @@
     height: 120px;
   }
   ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    gap: 10px;
-
-    text-align: start;
+    text-align: center;
     list-style: none;
+    height: fit-content;
+    padding: 2px;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: var(--color-text);
+    color: var(--color-bg);
+  }
+  li {
+    padding: 5px 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .active {
+    color: var(--color-text);
+  }
+
+  #highlight {
+    position: absolute;
+    background-color: var(--color-bg);
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 </style>

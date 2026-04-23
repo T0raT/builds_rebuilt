@@ -26,6 +26,7 @@
   import { animate } from "animejs";
 
   // SVG related code below
+  let FIRSTLOAD = true;
   const svgFrame = document.querySelector('[data-js="outer-frame"] svg');
   const outerRects = document.querySelectorAll(
     "#outer-mask-bg, #outer-rect-bg",
@@ -46,18 +47,19 @@
     throw new Error("Window does not exist...?");
   }
 
-  document.addEventListener("navEvent", (e) => {
-    console.log(`event caught:${e}`);
-    const navEvent = e as CustomEvent; // Event casting is necessary to avoid errors
-
-    if (navEvent.detail === true) {
+  document.addEventListener("navOpen", () => {
+    if (document.body.hasAttribute("data-nav-open")) {
       animate(["#inner-mask-body", "#inner-rect-border"], {
         duration: 500,
         ease: "outElastic(1,2)",
         y: `+=120`,
         height: `-=120`,
       });
-    } else {
+    }
+  });
+
+  document.addEventListener("navClose", () => {
+    if (!document.body.hasAttribute("data-nav-open")) {
       animate(["#inner-mask-body", "#inner-rect-border"], {
         duration: 500,
         ease: "outElastic(1,2)",
@@ -70,8 +72,8 @@
   function updateSVGWrapper() {
     vh = window.innerHeight;
     vw = window.innerWidth;
-    console.log(`width: ${vw}`);
-    console.log(`height: ${vh}`);
+    // console.log(`width: ${vw}`);
+    // console.log(`height: ${vh}`);
 
     svgFrame?.setAttribute("width", `${vw}`);
     svgFrame?.setAttribute("height", `${vh}`);

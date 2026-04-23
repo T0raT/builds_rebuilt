@@ -15,15 +15,18 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 <script>
   import { animate } from "animejs";
 
-  document.addEventListener("navEvent", (e) => {
-    const navEvent = e as CustomEvent;
-    if (navEvent.detail === true) {
+  document.addEventListener("navOpen", () => {
+    if (document.body.hasAttribute("data-nav-open")) {
       animate(`#logo-container`, {
         duration: 500,
         ease: "outElastic(1,2)",
         top: `+=120`,
       });
-    } else {
+    }
+  });
+
+  document.addEventListener("navClose", () => {
+    if (!document.body.hasAttribute("data-nav-open")) {
       animate(`#logo-container`, {
         duration: 500,
         ease: "outElastic(1,2)",

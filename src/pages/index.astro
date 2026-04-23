@@ -29,13 +29,12 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
       passions.
     </p>
     <div class="button-container">
-      <Button class="link-btn"><a href="/events">Our Events</a></Button>
-      <Button class="link-btn"
-        ><a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://discord.gg/qxk4Bp6tqm">Join our Discord!</a
-        ></Button
+      <a href="/events"><Button class="link-btn">Our Events</Button></a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://discord.gg/qxk4Bp6tqm"
+        ><Button class="link-btn">Join our Discord!</Button></a
       >
     </div>
   </section>
@@ -129,10 +128,14 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
 <script>
   // Clicking on any link should have a "closing" animation for the mobile nav menu
   const linkBtns = document.querySelectorAll(".link-btn");
+
   linkBtns.forEach((link) => {
     link.addEventListener("click", () => {
-      document.body.removeAttribute("data-nav-open");
-      document.dispatchEvent(new CustomEvent("navEvent", { detail: false }));
+      // Guard here, animation should only happen when the nav is actually opened
+      if (document.body.hasAttribute("data-nav-open")) {
+        document.body.removeAttribute("data-nav-open");
+        document.dispatchEvent(new CustomEvent("navEvent", { detail: false }));
+      }
     });
   });
 </script>
