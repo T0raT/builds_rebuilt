@@ -3,7 +3,7 @@ const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
 ---
 
-<nav id="mobile-nav">
+<nav id="navMenu">
   <ul>
     <li>
       <a href="/" aria-label="Builds home page">Home</a>
@@ -24,10 +24,11 @@ const currentPath = pathname.slice(1);
   import { animate } from "animejs";
   import { getCurrentUrl } from "swup";
 
-  const $navMenu = document.getElementById("mobile-nav");
-  if (!$navMenu) throw new Error("mobile-nav does not exist somehow");
+  const $navMenu = document.getElementById("navMenu");
+  if (!$navMenu) throw new Error("navMenu does not exist somehow");
   const $allLinks = $navMenu.querySelectorAll("li");
   const $highlightBlock = $navMenu.querySelector("#highlight");
+  const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
 
   function updateActiveLink() {
     const url = getCurrentUrl();
@@ -39,14 +40,27 @@ const currentPath = pathname.slice(1);
 
         const { width, height, x, y } = $link.getBoundingClientRect();
         console.log(x, y);
-        animate($highlightBlock as HTMLElement, {
-          width: width,
-          height: height,
-          x: x,
-          y: y,
-          duration: 200,
-          ease: "out(5.82)",
-        });
+        if (isMobile()) {
+          animate($highlightBlock as HTMLElement, {
+            width: width,
+            height: height,
+            x: x,
+            y: y,
+            duration: 100,
+            ease: "out(5.82)",
+          });
+        } else {
+          if (!$navMenu) throw new Error("navMenu does not exist");
+          const { x: navX, y: navY } = $navMenu.getBoundingClientRect();
+          animate($highlightBlock as HTMLElement, {
+            width: width,
+            height: height,
+            x: x - navX,
+            y: y - navY,
+            duration: 500,
+            ease: "out(5.82)",
+          });
+        }
       } else {
         $link.classList.remove("active");
       }
@@ -54,7 +68,8 @@ const currentPath = pathname.slice(1);
   }
 
   function toggleNav() {
-    if (!$navMenu) throw new Error("mobile-nav does not exist somehow");
+    if (!isMobile()) return;
+    if (!$navMenu) throw new Error("navMenu does not exist somehow");
     if (document.body.hasAttribute("data-nav-open")) {
       $navMenu.style.opacity = "1";
       $navMenu.style.visibility = "visible";
@@ -65,14 +80,21 @@ const currentPath = pathname.slice(1);
   }
 
   updateActiveLink();
-  document.addEventListener("swup:page:view", () => {
+  document.addEventListener("swup:animation:out:start", () => {
+    // Animation starts on swup view transition start
+    updateActiveLink();
+  });
+  document.addEventListener("swup:history:popstate", () => {
+    // Animation when forward/back are pressed in a browser
     updateActiveLink();
   });
 
   // Below are code responsible for navOpen and navClose events
+  // which should only happen on mobile screen sizes
 
   $allLinks.forEach(($link) => {
     $link.addEventListener("click", () => {
+      if (!isMobile()) return;
       document.body.removeAttribute("data-nav-open");
       document.dispatchEvent(new CustomEvent("navClose"));
     });
@@ -88,12 +110,13 @@ const currentPath = pathname.slice(1);
     justify-content: center;
     align-items: center;
     opacity: 0;
-    z-index: 1999;
     position: fixed;
     width: 100%;
     height: 120px;
+    z-index: 1999;
   }
   ul {
+    border: 1px solid var(--color-border);
     text-align: center;
     list-style: none;
     height: fit-content;
@@ -127,5 +150,14 @@ const currentPath = pathname.slice(1);
     top: 0;
     left: 0;
     z-index: 1;
+  }
+
+  @media (min-width: 767px) {
+    nav {
+      opacity: 1;
+      visibility: visible;
+      margin-top: 105px;
+      height: fit-content;
+    }
   }
 </style>

@@ -2,7 +2,7 @@
 import { Font } from "astro:assets";
 import Logo from "@components/Layout/Logo.astro";
 import MobileNavIcon from "@components/Layout/MobileNavIcon.astro";
-import MobileNavMenu from "@components/Layout/MobileNavMenu.astro";
+import NavMenu from "@components/Layout/NavMenu.astro";
 import SVGWrapper from "@components/Layout/SVGWrapper.astro";
 ---
 
@@ -24,11 +24,11 @@ import SVGWrapper from "@components/Layout/SVGWrapper.astro";
   </head>
   <body>
     <MobileNavIcon />
-    <MobileNavMenu />
+    <NavMenu />
     <Logo />
     <SVGWrapper />
     <div id="app">
-      <main id="swup" class="transition-fade">
+      <main id="swup">
         <slot />
       </main>
     </div>
