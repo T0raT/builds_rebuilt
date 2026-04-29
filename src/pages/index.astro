@@ -132,15 +132,15 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     if (vw < 767) {
       const linkBtns = document.querySelectorAll(".link-btn");
 
-      linkBtns.forEach((link) => {
-        link.addEventListener("click", () => {
-          // Guard here, animation should only happen when the nav is actually opened
-          if (document.body.hasAttribute("data-nav-open")) {
+      // Guard here, navClose animation should only happen when the nav is actually opened
+      if (document.body.hasAttribute("data-nav-open")) {
+        linkBtns.forEach((link) => {
+          link.addEventListener("click", () => {
             document.body.removeAttribute("data-nav-open");
             document.dispatchEvent(new CustomEvent("navClose"));
-          }
+          });
         });
-      });
+      }
     }
   });
   // Clicking on any link should have a "closing" animation for the mobile nav menu
