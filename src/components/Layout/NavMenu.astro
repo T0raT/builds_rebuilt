@@ -95,6 +95,12 @@ const currentPath = pathname.slice(1);
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
+      if (!isMobile()) {
+        // Styling needs clearing because they have priority over media query
+        // So for media query to show opacity and visibility, this is needed
+        $navMenu.style.opacity = "";
+        $navMenu.style.visibility = "";
+      }
       const $active = $navMenu.querySelector("li.active");
       if ($active) animateNav($active as HTMLLIElement);
     }, 50);
