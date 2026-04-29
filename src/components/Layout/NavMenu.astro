@@ -30,27 +30,15 @@ const currentPath = pathname.slice(1);
   const $highlightBlock = $navMenu.querySelector("#highlight");
   const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
 
-  function animateMobileNav($link: HTMLLIElement) {
-    const { width, height, x, y } = $link.getBoundingClientRect();
-    animate($highlightBlock as HTMLDivElement, {
-      width: width,
-      height: height,
-      x: x,
-      y: y,
-      duration: 250,
-      ease: "out(5.82)",
-    });
-  }
-
   function animateNav($link: HTMLLIElement) {
-    if (!$navMenu) throw new Error("navMenu does not exist");
-    const { width, height, x, y } = $link.getBoundingClientRect();
+    if (!$navMenu) throw new Error("error");
     const { x: navX, y: navY } = $navMenu.getBoundingClientRect();
+    const { width, height, x, y } = $link.getBoundingClientRect();
     animate($highlightBlock as HTMLDivElement, {
       width: width,
       height: height,
-      x: x - navX,
-      y: y - navY,
+      x: isMobile() ? x : x - navX,
+      y: isMobile() ? y : y - navY,
       duration: 500,
       ease: "out(5.82)",
     });
@@ -62,7 +50,7 @@ const currentPath = pathname.slice(1);
       const href = $link.children[0].getAttribute("href");
       if (href === url) {
         $link.classList.add("active");
-        isMobile() ? animateMobileNav($link) : animateNav($link);
+        animateNav($link);
       } else {
         $link.classList.remove("active");
       }
