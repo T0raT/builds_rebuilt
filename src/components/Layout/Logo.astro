@@ -7,9 +7,8 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
 ---
 
 <header id="logo-container">
-  <!-- Logo has the highest z-index -->
-  <pre style="color:red;">{BU}</pre>
-  <pre style="color:var(--color-papaya-white);">{ILDS}</pre>
+  <pre class="logo-accent">{BU}</pre>
+  <pre>{ILDS}</pre>
 </header>
 
 <script>
@@ -46,7 +45,7 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     text-align: center;
     background-color: var(--color-bg);
     height: 44px;
-    z-index: 420;
+    z-index: var(--z-logo);
   }
 
   #logo-container pre {
@@ -56,6 +55,11 @@ const ILDS = fl.textSync("ILDS", { font: "AnsiShadow" }).trim();
     display: inline-block;
     margin: 0;
     padding: 0;
+    color: var(--color-text);
+  }
+
+  #logo-container .logo-accent {
+    color: var(--color-accent);
   }
 
   @media (min-width: 800px) {

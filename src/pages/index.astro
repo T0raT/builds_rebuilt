@@ -76,7 +76,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
   </section>
 
   <section class="hacking-desc">
-    <h2>What is <span style="color: red;">Hacking?</span></h2>
+    <h2>What is <span class="accent">Hacking?</span></h2>
     <p>
       The idea of hacking is learning and building upon existing ideas and
       reinventing systems.
@@ -112,7 +112,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
   <section class="contacts">
     <PlaceholderBlock class="placeholder-2" />
     <div class="contact-card">
-      <h3 style="color: red;">Contact Us</h3>
+      <h3 class="accent">Contact Us</h3>
       <p>
         665 Commonwealth Ave
         <br /> Room 220
@@ -165,18 +165,28 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     text-align: end;
   }
 
+  .accent {
+    color: var(--color-accent);
+  }
+
   .heading {
     padding: 60px var(--mobile-padding-inner) 20px var(--mobile-padding-inner);
 
     span {
-      color: red;
+      color: var(--color-accent);
     }
 
     h1::after {
       margin-left: 8px;
       content: "\00258c";
       font-size: 1.4rem;
-      animation: animate 1s step-start 1s infinite backwards;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      /* For the folks who didn't opt in reduced motion */
+      h1::after {
+        animation: cursor-blink 1s step-start 1s infinite backwards;
+      }
     }
     .header-barcode {
       margin: 0.8rem 0 1.5rem 0.1rem;
@@ -229,7 +239,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
         padding: 0 var(--mobile-padding-inner) var(--mobile-padding-inner);
       }
       h3 {
-        color: red;
+        color: var(--color-accent);
       }
     }
 
@@ -367,7 +377,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     }
   }
 
-  @keyframes animate {
+  @keyframes cursor-blink {
     0% {
       opacity: 0;
     }

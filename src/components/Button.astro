@@ -13,22 +13,33 @@ const { class: className, ...rest } = Astro.props;
     padding: 7px 15px;
     color: black;
     background-color: var(--color-papaya-white);
-    transition: all 100ms;
+    transition:
+      border-color 100ms,
+      color 100ms,
+      transform 100ms;
 
     font-family: var(--font-body);
     font-size: 1rem;
   }
 
-  button:hover {
-    border: 3px solid red;
-    color: red;
-    transform: translateX(3px) translateY(-3px);
-    transition: all 170ms;
+  @media (hover: hover) {
+    /* Prevents sticky hover effects on mobile touch devices */
+    button:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      transform: translateX(3px) translateY(-3px);
+      transition:
+        border-color 170ms,
+        color 170ms,
+        transform 170ms;
+    }
   }
 
   button:active {
-    border: 3px solid red;
+    border-color: var(--color-accent);
     transform: translateX(-2px) translateY(2px);
-    transition: all 100ms;
+    transition:
+      border-color 100ms,
+      transform 100ms;
   }
 </style>
