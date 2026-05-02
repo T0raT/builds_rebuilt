@@ -126,6 +126,13 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
 </Layout>
 
 <script>
+  import { animate, scrambleText } from "animejs";
+
+  animate("h1", {
+    innerHTML: scrambleText({ override: "_" }),
+  });
+
+  // TODO: Logic here needs a re-write or debouncing
   window.addEventListener("resize", () => {
     const vw = window.innerWidth;
 
