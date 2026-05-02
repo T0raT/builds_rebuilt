@@ -136,7 +136,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
   window.addEventListener("resize", () => {
     const vw = window.innerWidth;
 
-    if (vw < 767) {
+    if (vw < 800) {
       const linkBtns = document.querySelectorAll(".link-btn");
 
       // Guard here, navClose animation should only happen when the nav is actually opened
@@ -176,7 +176,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
       margin-left: 8px;
       content: "\00258c";
       font-size: 1.4rem;
-      animation: animate 1s step-start infinite;
+      animation: animate 1s step-start 1s infinite backwards;
     }
     .header-barcode {
       margin: 0.8rem 0 1.5rem 0.1rem;
@@ -260,7 +260,7 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
     }
   }
 
-  @media (min-width: 767px) {
+  @media (min-width: 800px) {
     .text-barcode {
       font-size: calc(1rem + 1vw);
     }
@@ -369,13 +369,13 @@ import PlaceholderBlock from "@components/PlaceholderBlock.astro";
 
   @keyframes animate {
     0% {
-      opacity: 1;
-    }
-    50% {
       opacity: 0;
     }
-    100% {
+    50% {
       opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
   }
 </style>
