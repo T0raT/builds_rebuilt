@@ -1,5 +1,5 @@
 > [!NOTE]
-> Project migrated to BUILDS repo, this repo is abandoned.
+> Project migrated to builds-cc repo, this repo is abandoned.
 
 # Astro Starter Kit: Basics
 
